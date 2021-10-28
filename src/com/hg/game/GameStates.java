@@ -1,0 +1,12 @@
+package com.hg.game;
+
+public enum GameStates {
+    WAITING_FOR_PLAYERS,
+    LOBBY_COUNTDOWN,
+    CIRCLE_COUNTDOWN,
+    IN_PROGRESS,
+    DEATHMATCH_COUNTDOWN,
+    COMPLETED,
+    RESTARTING,
+    MAINTENANCE,
+}

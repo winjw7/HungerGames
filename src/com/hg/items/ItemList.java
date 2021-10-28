@@ -19,6 +19,7 @@ public class ItemList {
         items = new ArrayList<Item>();
 
         items.add(new Item(ItemRarity.COMMON, Material.WOODEN_AXE));
+        items.add(new Item(ItemRarity.RARE, Material.IRON_AXE));
 
 
         CreateWeighedList();

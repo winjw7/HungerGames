@@ -17,8 +17,11 @@ import org.bukkit.entity.Player;
 public class Game {
 
     public final static int MAX_PLAYERS = 24;
-    public final static int START_COUNTDOWN_PLAYERS = 6;
-    public final static int START_DEATHMATCH_PLAYERS = 4;
+    
+    private final static int START_COUNTDOWN_PLAYERS = 6;
+    private final static int START_DEATHMATCH_PLAYERS = 4;
+
+    private final static int LOBBY_CONTDOWN_TIME = 30;
 
     private GameStates state;
     private Map map;
@@ -30,6 +33,7 @@ public class Game {
 
     private void StartCoundown() {
         this.state = GameStates.LOBBY_COUNTDOWN;
+        //ContentSenderManager.BroadcastMessage(, msg);
     }
     
     public void PlayerJoin(Player p) {

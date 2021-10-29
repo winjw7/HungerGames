@@ -1,5 +1,6 @@
 package com.hg.events;
 
+import com.hg.Main;
 import com.hg.game.Game;
 import com.hg.players.GamePlayer;
 
@@ -15,6 +16,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class EventListener implements Listener {
 
     private Game game;
+    private Main main;
+
+    public EventListener(Main main) {
+        this.main = main;
+    }
 
     @EventHandler
     public void joinedServer(PlayerJoinEvent e) {

@@ -1,0 +1,11 @@
+name: HungerGames
+version: 1.0
+main: com.hg.Main
+author: winjw7
+api-version: 1.14
+description: The classic Hunger Games with Mutations
+depend: [ProtocolLib]
+commands:
+  hungergames:
+    description: base command
+    aliases: [hg]

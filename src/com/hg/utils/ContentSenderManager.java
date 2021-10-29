@@ -9,7 +9,6 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 public class ContentSenderManager {
-    private static final String serverName = "&bThe Fridge ";
     public static final String defaultTextColor = "&8";
     
     /**

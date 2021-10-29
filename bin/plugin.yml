@@ -1,0 +1,11 @@
+name: EditFoods
+version: 1.0
+main: com.winjw7.EditFoods.Main
+author: winjw7
+api-version: 1.14
+description: Change how food works!
+depend: [ProtocolLib]
+commands:
+  editfoods:
+    description: base command
+    aliases: [ef]

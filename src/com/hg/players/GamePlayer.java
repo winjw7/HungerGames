@@ -15,6 +15,7 @@ public class GamePlayer {
 	private String name;
 	private IPlayerTypes type;
 	private PlayerGameStats stats;
+	private PlayerRanks rank;
 
 	/**
 	 * Constructor for game player
@@ -26,6 +27,17 @@ public class GamePlayer {
 		this.id = p.getUniqueId();
 		this.name = p.getName();
 		this.stats = new PlayerGameStats(type);
+
+		PlayerRanks[] ranks = PlayerRanks.values();
+
+		for (int i = ranks.length - 1; i >= 0; i--) {
+			PlayerRanks r = ranks[i];
+			
+			if(p.hasPermission(r.getRankPerm())) {
+				this.rank = r;
+				break;
+			}
+		}
 	}
 
 	/**
@@ -42,6 +54,22 @@ public class GamePlayer {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * Return player's name with color
+	 * @return name with color
+	 */
+	public String getFormattedName() {
+		return rank.getNameColor() + name;
+	}
+
+	/**
+	 * Gets a formated name with prefix
+	 * @return name with color and prefix
+	 */
+	public String getRankFormattedName() {
+		return rank.getNamePrefix() + getFormattedName();
 	}
 
 	/**
@@ -106,5 +134,17 @@ public class GamePlayer {
 	 */
 	public boolean wasTribute() {
 		return (boolean) stats.getStatValue(GameStatTypes.WAS_ALIVE);
+	}
+
+	/**
+	 * Get how many mutation passes on win by default
+	 * @return mutation passes
+	 */
+	public int getMinMutationPasses() {
+		return rank.getMinMutationPasses();
+	}
+
+	public int getRankPower() {
+		return rank.getRankPower();
 	}
 }

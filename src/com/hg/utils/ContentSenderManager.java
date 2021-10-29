@@ -10,13 +10,14 @@ import org.bukkit.entity.Player;
 
 public class ContentSenderManager {
     private static final String serverName = "&bThe Fridge ";
+    public static final String defaultTextColor = "&8";
     
     /**
      * Broadcasts a message to all players
      * @param type The chat type
      * @param msg the msg
      */
-    public void BroadcastMessage(ChatType type, String msg) {
+    public static void BroadcastMessage(ChatType type, String msg) {
         Bukkit.broadcastMessage(ColorMessage(type.seperator + msg));
     }
 
@@ -24,7 +25,7 @@ public class ContentSenderManager {
      * Broadcasts a sound to all players
      * @param s the sound
      */
-    public void BroadcastSound(Sound s) {
+    public static void BroadcastSound(Sound s) {
         for(Player p : Bukkit.getOnlinePlayers()) {
             p.playSound(p.getLocation(), s, 1, 1);
         }
@@ -36,7 +37,7 @@ public class ContentSenderManager {
      * @param type The chat type
      * @param msg the msg
      */
-    public void sendPlayersMessage(List<UUID> players, ChatType type, String msg) {
+    public static void sendPlayersMessage(List<UUID> players, ChatType type, String msg) {
         for(UUID all : players) {
             Player p = Bukkit.getServer().getPlayer(all);
 

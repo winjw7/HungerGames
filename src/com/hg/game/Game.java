@@ -29,6 +29,7 @@ public class Game {
 
     public Game() {
         players = new ArrayList<GamePlayer>();
+        state = GameStates.WAITING_FOR_PLAYERS;
     }
 
     private void StartCoundown() {
@@ -37,6 +38,7 @@ public class Game {
     }
     
     public void PlayerJoin(Player p) {
+
         if(getPlayerByID(p.getUniqueId()) == null) {
 
             GamePlayer gp = new GamePlayer(p, IPlayerTypes.TRIBUTE);
@@ -71,12 +73,11 @@ public class Game {
 
             gp.setPlayerType(IPlayerTypes.SPECTATOR);
         } else {
+            players.remove(gp);
 
             if(!inArena()) {
                 ContentSenderManager.BroadcastMessage(ChatType.INFO, gp.getFormattedName() + ContentSenderManager.defaultTextColor + " has left the game! (" + getTributeCount() + "/" + MAX_PLAYERS + ")");
             }
-
-            players.remove(gp);
         }
     }
 

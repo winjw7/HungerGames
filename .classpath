@@ -5,7 +5,7 @@
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
-	</classpathentry>
+	</classpathentry>f
 	<classpathentry kind="lib" path="./dependences/spigot-1.14.jar">
 		<attributes>
 			<attribute name="module" value="true"/>

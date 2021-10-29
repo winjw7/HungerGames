@@ -18,8 +18,9 @@ public class EventListener implements Listener {
     private Game game;
     private Main main;
 
-    public EventListener(Main main) {
+    public EventListener(Main main, Game game) {
         this.main = main;
+        this.game = game;
     }
 
     @EventHandler

@@ -1,11 +1,11 @@
-name: EditFoods
+name: HungerGames
 version: 1.0
-main: com.winjw7.EditFoods.Main
+main: com.hg.Main
 author: winjw7
 api-version: 1.14
-description: Change how food works!
+description: The classic Hunger Games with Mutations
 depend: [ProtocolLib]
 commands:
-  editfoods:
+  hungergames:
     description: base command
-    aliases: [ef]
+    aliases: [hg]

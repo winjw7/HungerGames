@@ -1,0 +1,3 @@
+{
+    "java.project.exportJar.targetPath": "D:/MC/Plugin Test Server/plugins/${workspaceFolderBasename}.jar"
+}

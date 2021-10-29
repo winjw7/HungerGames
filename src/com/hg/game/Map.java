@@ -1,13 +1,23 @@
 package com.hg.game;
 
 import java.util.List;
+import java.util.Random;
+
+import com.hg.items.ItemList;
 
 import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
 
 /**
  * A map for a game
  */
 public class Map {
+    private final int MAX_ITEMS = 6;
+    private final int MIN_ITEMS = 3;
     private String name;
     private String desc;
     private List<Location> spawnLocations;
@@ -78,6 +88,25 @@ public class Map {
      * Fills cases
      */
     public void fillCases() {
-
+        ItemList itemList = new ItemList();
+        
+        for(Location loc : cases) {
+            Chest chest = (Chest) loc.getBlock();
+            Inventory inventory = chest.getBlockInventory();
+            Random r = new Random();
+            int itemCount = r.nextInt(MAX_ITEMS - MIN_ITEMS + 1) + MIN_ITEMS;
+            
+            for(int i = 0; i < itemCount; i++) {
+                ItemStack item = itemList.getRandomItem();
+                boolean setItem = false;
+                while(setItem == false) {
+                    int index = r.nextInt(inventory.getSize());
+                    if(inventory.getItem(index) == null) {
+                        inventory.setItem(index, item);
+                        setItem = true;
+                    }
+                }
+            }
+        }
     }
 }

@@ -99,4 +99,12 @@ public class GamePlayer {
 	public boolean isSpectator() {
 		return type == IPlayerTypes.SPECTATOR;
 	}
+
+	/**
+	 * Whether they were a tribute or not
+	 * @return if was tribute
+	 */
+	public boolean wasTribute() {
+		return (boolean) stats.getStatValue(GameStatTypes.WAS_ALIVE);
+	}
 }

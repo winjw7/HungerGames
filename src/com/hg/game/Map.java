@@ -6,7 +6,6 @@ import java.util.Random;
 import com.hg.items.ItemList;
 
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

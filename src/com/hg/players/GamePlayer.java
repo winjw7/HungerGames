@@ -33,7 +33,7 @@ public class GamePlayer {
 		for (int i = ranks.length - 1; i >= 0; i--) {
 			PlayerRanks r = ranks[i];
 			
-			if(p.hasPermission(r.getRankPerm())) {
+			if(p.hasPermission(r.getRankPerm()) || (i == 0 && !p.hasPermission(r.getRankPerm()))) {
 				this.rank = r;
 				break;
 			}

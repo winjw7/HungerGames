@@ -3,8 +3,8 @@ package com.hg.players;
 import com.hg.utils.ContentSenderManager;
 
 public enum PlayerRanks {
-    DEFAULT("", "&r&8", "", 0, 0),
-    IRON("rank.iron", "&r&7", "&7&lIRON ", 1, 1),
+    DEFAULT("", "&r&7", "", 0, 0),
+    IRON("rank.iron", "&r&f", "&f&lIRON ", 1, 1),
     GOLD("rank.gold", "&r&6", "&6&lGOLD ", 2, 2),
     DIAMOND("rank.diamond", "&r&b", "&b&lDIAMOND ", 3, 3),
     YOUTUBER("rank.youtuber", "&r&c", "&c&lYOUTUBER ", 3, 4),

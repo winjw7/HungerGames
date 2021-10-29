@@ -3,12 +3,16 @@ package com.hg.events;
 import com.hg.Main;
 import com.hg.game.Game;
 import com.hg.players.GamePlayer;
+import com.hg.utils.ContentSenderManager;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -63,4 +67,22 @@ public class EventListener implements Listener {
     public void explodeGrief(EntityExplodeEvent e) {
         e.blockList().clear();
     }   
+
+    @EventHandler
+    public void chat(AsyncPlayerChatEvent e) {
+        e.setCancelled(true);
+
+        GamePlayer gp = game.getPlayerByID(e.getPlayer().getUniqueId());
+
+        if(gp.isAlive()) {
+            String msg;
+
+            if(gp.getRankPower() == 0)
+                msg = ChatColor.DARK_GRAY + e.getMessage();
+            else 
+                msg = ChatColor.WHITE + e.getMessage();
+
+            Bukkit.broadcastMessage(gp.getRankFormattedName() + " " + msg);
+        }
+    }
 }

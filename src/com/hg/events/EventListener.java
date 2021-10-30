@@ -3,15 +3,18 @@ package com.hg.events;
 import com.hg.Main;
 import com.hg.game.Game;
 import com.hg.players.GamePlayer;
+import com.hg.players.IPlayerTypes;
 import com.hg.utils.ContentSenderManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -73,16 +76,20 @@ public class EventListener implements Listener {
         e.setCancelled(true);
 
         GamePlayer gp = game.getPlayerByID(e.getPlayer().getUniqueId());
+        String msg = gp.getChatColor() + e.getMessage();
 
         if(gp.isAlive()) {
-            String msg;
-
-            if(gp.getRankPower() == 0)
-                msg = ChatColor.DARK_GRAY + e.getMessage();
-            else 
-                msg = ChatColor.WHITE + e.getMessage();
-
             Bukkit.broadcastMessage(gp.getRankFormattedName() + " " + msg);
+        } 
+        
+        else if(gp.isSpectator()) {
+            for(GamePlayer spec : game.getPlayersByType(IPlayerTypes.SPECTATOR)) {
+                Player p = Bukkit.getPlayer(spec.getID());
+                p.sendMessage(ContentSenderManager.ColorMessage("&7&lSPECTATOR ") + gp.getFormattedName() + " " + msg);
+            }
+        }
+        else if(gp.isMutation()) {
+            Bukkit.broadcastMessage(ContentSenderManager.ColorMessage("&d&lMUTATION ") + gp.getFormattedName() + " " + msg);
         }
     }
 }

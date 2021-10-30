@@ -73,6 +73,14 @@ public class GamePlayer {
 	}
 
 	/**
+	 * Get rank chat color
+	 * @return chat color
+	 */
+	public String getChatColor() {
+		return rank.getChatColor();
+	}
+
+	/**
 	 * Returns the player id
 	 * @return id
 	 */

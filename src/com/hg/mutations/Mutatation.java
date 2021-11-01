@@ -1,6 +1,9 @@
 package com.hg.mutations;
 
 import java.util.List;
+import java.util.UUID;
+
+import com.hg.players.GamePlayer;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
@@ -14,11 +17,13 @@ public abstract class Mutatation {
     private String name;
     private EntityType type;
     private int maxHealth;
+    private GamePlayer target;
 
-    public Mutatation(EntityType type, String name, int max) {
+    public Mutatation(EntityType type, String name, int max, GamePlayer target) {
         this.type = type;
         this.name = name;
         this.maxHealth = max;
+        this.target = target;
     }
 
     public void applyEffects(Player p) {
@@ -52,6 +57,10 @@ public abstract class Mutatation {
         return maxHealth;
     }
 
+    public UUID getTargetID() {
+        return target.getID();
+    }
+
     public abstract List<PotionEffect> getEffects();
 
     public abstract List<ItemStack> getItems();
@@ -59,5 +68,5 @@ public abstract class Mutatation {
     public abstract ItemStack getChestplate();
     public abstract ItemStack getLeggings();
     public abstract ItemStack getBoots();
-    
+   
 }

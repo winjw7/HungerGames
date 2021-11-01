@@ -22,7 +22,7 @@ public class Main extends JavaPlugin
     {
         game = new Game();
 
-        Bukkit.getServer().getPluginManager().registerEvents(new EventListener(this, game), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new EventListener(game), this);
         
         Bukkit.getConsoleSender().sendMessage(ContentSenderManager.ColorMessage(serverName) + ChatColor.GREEN + "has been " + ChatColor.BOLD + "ENABLED!");
         

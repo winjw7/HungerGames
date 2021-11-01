@@ -8,12 +8,15 @@ import com.hg.utils.ContentSenderManager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -23,10 +26,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class EventListener implements Listener {
 
     private Game game;
-    private Main main;
 
-    public EventListener(Main main, Game game) {
-        this.main = main;
+    public EventListener(Game game) {
         this.game = game;
     }
 
@@ -91,5 +92,25 @@ public class EventListener implements Listener {
         else if(gp.isMutation()) {
             Bukkit.broadcastMessage(ContentSenderManager.ColorMessage("&d&lMUTATION ") + gp.getFormattedName() + " " + msg);
         }
+    }
+
+    @EventHandler
+    public void food(FoodLevelChangeEvent e) {
+        if(!game.inArena())
+            e.setCancelled(true);
+
+        else {
+            Player p = (Player) e.getEntity();
+            GamePlayer gp = game.getPlayerByID(p.getUniqueId());
+
+            if(!gp.isAlive())
+                e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void dmg(EntityDamageEvent e) {
+        if(!game.canTakeDamage())
+            e.setCancelled(true);
     }
 }

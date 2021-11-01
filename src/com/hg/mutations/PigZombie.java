@@ -3,6 +3,8 @@ package com.hg.mutations;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hg.players.GamePlayer;
+
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
@@ -11,8 +13,12 @@ import org.bukkit.potion.PotionEffectType;
 
 public class PigZombie extends Mutatation {
 
-    public PigZombie() {
-        super(EntityType.PIG_ZOMBIE, "Zombie Pigman", 20);
+    /**
+     * Constructor for mutation
+     * @param gp target game player
+     */
+    public PigZombie(GamePlayer gp) {
+        super(EntityType.PIG_ZOMBIE, "Zombie Pigman", 20, gp);
     }
 
     @Override

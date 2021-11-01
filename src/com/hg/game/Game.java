@@ -165,6 +165,10 @@ public class Game {
         return (state == GameStates.IN_PROGRESS || state == GameStates.DEATHMATCH_COUNTDOWN) && gp.isAlive();
     }
 
+    public boolean canTakeDamage() {
+        return state == GameStates.IN_PROGRESS;
+    }
+
     /**
      * Gets whether the game is in maintence mode
      * @return if maintence mode

@@ -1,28 +1,24 @@
 package com.hg.players;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.hg.stats.*;
 
 public class PlayerGameStats {
-    private List<GameStat<?>> stats;
+    private Map<GameStatTypes, Object> stats;
 
     /**
      * A list of player stats
      * @param type the player type
      */
     public PlayerGameStats(IPlayerTypes type) {
-        stats = new ArrayList<GameStat<?>>();
+        stats = new HashMap<GameStatTypes, Object>();
        
-        try {
-            stats.add(new Kills());
-            stats.add(new WasAlive(type));
-            stats.add(new HasMutated());
-            stats.add(new HasSponsored(type));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        stats.put(GameStatTypes.KILLS, 0);
+        stats.put(GameStatTypes.HAS_MUTATED, false);
+        stats.put(GameStatTypes.HAS_SPONSORED, false);
+        stats.put(GameStatTypes.WAS_ALIVE, type == IPlayerTypes.TRIBUTE);
     }
 
     /**
@@ -31,8 +27,19 @@ public class PlayerGameStats {
      * @return the value
      */
     public Object getStatValue(GameStatTypes type) {
-        GameStat<?> stat = stats.stream().filter((s) -> s.getStatType() == type).findFirst().orElse(null);
-        
-        return stat != null ? stat.getValue() : null;
+
+        if(!stats.containsKey(type))
+            return null;
+
+        return stats.get(type);
+    }
+
+    /**
+     * Sets a stat value
+     * @param type the stat type
+     * @param value the value
+     */
+    public void setStatValue(GameStatTypes type, Object value) {
+        stats.put(type, value);
     }
 }

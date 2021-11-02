@@ -2,6 +2,7 @@ package com.hg.players;
 
 import java.util.UUID;
 
+import com.hg.mutations.Mutation;
 import com.hg.stats.GameStatTypes;
 
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ public class GamePlayer {
 	private IPlayerTypes type;
 	private PlayerGameStats stats;
 	private PlayerRanks rank;
+	private Mutation mutation;
 
 	/**
 	 * Constructor for game player
@@ -154,5 +156,27 @@ public class GamePlayer {
 
 	public int getRankPower() {
 		return rank.getRankPower();
+	}
+
+	/**
+	 * Set mutation
+	 * @param mut mutation 
+	 */
+	public void setMutation(Mutation mut) {
+		this.mutation = mut;
+		setPlayerType(IPlayerTypes.MUTATION);
+		
+	}
+
+	/**
+	 * Gets the mutation target
+	 * @return target id
+	 */
+	public UUID getMutationTargetID() {
+		if(this.isMutation() && mutation != null) {
+			return mutation.getTargetID();
+		}
+		
+		return null;
 	}
 }

@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class PigZombie extends Mutatation {
+public class PigZombie extends Mutation {
 
     /**
      * Constructor for mutation

@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -112,5 +113,17 @@ public class EventListener implements Listener {
     public void dmg(EntityDamageEvent e) {
         if(!game.canTakeDamage())
             e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void dmgByEvent(EntityDamageByEntityEvent e) {
+        if(e.getDamager() instanceof Player) {
+            Player p = (Player) e.getDamager();
+            GamePlayer gp = game.getPlayerByID(p.getUniqueId());
+
+            if(gp.isMutation() && e.getEntity().getUniqueId() != gp.getMutationTargetID()) {
+                e.setCancelled(true);
+            } 
+        }
     }
 }

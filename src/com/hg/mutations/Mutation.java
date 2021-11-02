@@ -12,14 +12,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 
-public abstract class Mutatation {
+public abstract class Mutation {
    
     private String name;
     private EntityType type;
     private int maxHealth;
     private GamePlayer target;
 
-    public Mutatation(EntityType type, String name, int max, GamePlayer target) {
+    public Mutation(EntityType type, String name, int max, GamePlayer target) {
         this.type = type;
         this.name = name;
         this.maxHealth = max;
